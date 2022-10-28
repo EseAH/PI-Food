@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
-const {getAllRecipes, getRecipeId} = require("../controllers/recipesC")
+const {getAllRecipes, getRecipeId, createRecipe} = require("../controllers/recipesC")
 
 router.get('/', async (req, res, next) => {
     const { title } = req.query
@@ -32,5 +32,8 @@ router.get("/:id", async (req, res, next) => {
       next(error);
     }
   });
+
+router.post("/", createRecipe);
+
 
 module.exports = router

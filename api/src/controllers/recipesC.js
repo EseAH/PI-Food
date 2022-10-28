@@ -68,5 +68,35 @@ const getRecipeId = async (id) => {
     }
 }
 
+const createRecipe = async (req, res, next) => {
+    const { title, summary, healthScore, steps, image, diets } = req.body
 
-module.exports = {getAllRecipes, getRecipeId}
+    if (!title || !summary) return res.status(404).send("Missing fields")
+    try {
+        if (title) {
+            const allRecipes = await getAllRecipes()
+            const titleMatch = allRecipes.filter(e => e.title.toLowerCase() === title.toLowerCase())
+            if (!titleMatch.length) {
+                const newRecipe = await Recipe.create({
+                    title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(),
+                    summary,
+                    healthScore,
+                    steps,
+                    image,
+                })
+                const dietsRecipe = await Diet.findAll({
+                    where: { name: diets},
+                })
+                newRecipe.addDiet(dietsRecipe)
+                return res.status(201).send(newRecipe)
+            } else {
+                return res.status(404).send("Recipe's title already exist!")
+            }
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+module.exports = {getAllRecipes, getRecipeId, createRecipe}
