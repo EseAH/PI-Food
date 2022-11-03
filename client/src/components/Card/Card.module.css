@@ -1,0 +1,24 @@
+.Card {
+    color: #8c46b2;
+    background-color: #da8d35;
+    opacity: 100%;
+    border-radius: 10px;
+    margin: 10px 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    word-wrap: break-word;
+    transition: .5s;
+}
+
+.Card:hover {
+    background-color: #e0e6bff9;
+}
+
+.Title {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white; text-shadow: black 0.1em 0.2em 0.3em;
+}
+
+.Title.h2 {
+    text-decoration: none;
+}

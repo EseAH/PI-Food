@@ -1,4 +1,5 @@
 import {
+    GET_DETAIL,
     GET_RECIPES, GET_RECIPE_TITLE
 } from "./actions"
 
@@ -8,7 +9,7 @@ const initialState = {
     diets: [],
 }
 
-export const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_RECIPES:
             return {
@@ -31,3 +32,5 @@ export const rootReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export default rootReducer
