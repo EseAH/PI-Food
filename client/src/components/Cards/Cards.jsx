@@ -29,7 +29,7 @@ export default function Cards() {
 
   return (
     <>
-      <h1>Cards</h1>
+      <h1>RECIPES</h1>
       <button>RELOAD RECIPES</button>
       <div className={styles.container}>
         {

@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/Landing/LandingPage';
 import Nav from './components/Nav/Nav';
 import Home from './pages/Home/Home';
 import CreateRecipe from './pages/Create/Create';

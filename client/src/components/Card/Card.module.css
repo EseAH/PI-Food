@@ -1,24 +1,29 @@
 .Card {
-    color: #8c46b2;
-    background-color: #da8d35;
+    color: #ccc4d0;
+    background-color: #da8d3548;
     opacity: 100%;
     border-radius: 10px;
-    margin: 10px 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    max-width: 80vw;
+    min-height: 360px;
     word-wrap: break-word;
     transition: .5s;
 }
+
 
 .Card:hover {
     background-color: #e0e6bff9;
 }
 
 .Title {
+    font-size: 80%;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     color: white; text-shadow: black 0.1em 0.2em 0.3em;
 }
 
-.Title.h2 {
+.Title h2 {
     text-decoration: none;
+}
+
+.Image {
+    padding-top: 10px;
 }

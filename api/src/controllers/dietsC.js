@@ -8,7 +8,7 @@ const URL = 'https://api.spoonacular.com/recipes/complexSearch'
 const getAllDiets = async () => {
     const totalDiets = await Diet.findAll()
     if (!totalDiets.length) {
-        const apiUrl = await axios.get(`${URL}?apiKey=${API_KEY_2}&addRecipeInformation=true&number=100`)
+        const apiUrl = await axios.get(`${URL}?apiKey=${API_KEY_1}&addRecipeInformation=true&number=100`)
         const apiDiets = apiUrl.data.results?.map(e => e.diets)
 
         const allDiets = apiDiets.flat().concat("vegetarian", "ketogenic")

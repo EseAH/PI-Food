@@ -1,13 +1,18 @@
 import {Link} from "react-router-dom"
+import styles from "./Nav.module.css"
 
 const Nav = ()=>{
     return(
-        <>        
-            <h2>Nav</h2>
-            <Link to="/"><p>Main</p></Link>
-            <Link to="/home"><p>Home</p></Link>
-            <Link to="/create"><p>Create</p></Link>
+        <>
+        <div className={styles.container}>
             <hr></hr>
+            <Link to="/"><h3>⇱</h3></Link>
+            <hr></hr>
+            <Link to="/home"><h3>HOME</h3></Link>
+            <hr></hr>
+            <Link to="/create"><h3>CREATE</h3></Link>
+            <hr></hr>
+        </div>
         </>
     )
 }

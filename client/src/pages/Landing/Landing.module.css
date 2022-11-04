@@ -1,0 +1,9 @@
+.fondo{
+    background-image: url('../../images/pexels-jessica-lewis-creative-858094.jpg');
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    color:white;
+    display: grid;
+    padding-top: 20vh;
+}
