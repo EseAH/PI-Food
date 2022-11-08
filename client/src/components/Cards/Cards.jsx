@@ -3,8 +3,9 @@ import { useDispatch, useSelector} from "react-redux"
 import { Link } from "react-router-dom"
 import { getRecipes } from "../../redux/actions"
 import Card from "../Card/Card"
+import Paginado from "../Paginate/Paginate"
 import styles from "./Cards.module.css"
-
+import loadingImg from "../../images/4vsk.gif"
 
 export default function Cards() {
 
@@ -16,7 +17,8 @@ export default function Cards() {
   const indexLastCard = currentPage * items // 9 indice de la ult card de la pag
   const indexFirstCard = indexLastCard - items // 0 indice de la primer card de la pag
   const currentCards = allRecipes.slice(indexFirstCard, indexLastCard)
-  const [order, setOrder] = useState('')
+  
+  //const [order, setOrder] = useState('')
 
   const paginado = (pageNumber) => {
       setCurrentPage(pageNumber)
@@ -27,10 +29,20 @@ export default function Cards() {
     dispatch(getRecipes())
   }, [dispatch])
 
+  function handleClick(e) {
+    e.preventDefault()
+    setCurrentPage(1)
+    dispatch(getRecipes())
+  }
   return (
     <>
       <h1>RECIPES</h1>
-      <button>RELOAD RECIPES</button>
+      <button onClick={(e)=>{handleClick(e)}}>RELOAD RECIPES</button>
+      <Paginado
+        items={items}
+        allRecipes={allRecipes.length}
+        paginado={paginado} 
+      />
       <div className={styles.container}>
         {
           currentCards.length ? (
@@ -46,7 +58,10 @@ export default function Cards() {
                 </Link>)
             })
           ) : (
-            <h3>Loading...</h3>
+            <div>
+              <h3>Loading...</h3>
+              <img alt="loading" src={loadingImg} height="80px" id="img" />
+            </div>
           )
         }
       </div>

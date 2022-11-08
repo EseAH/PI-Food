@@ -7,7 +7,7 @@ export default function LandingPage() {
         <div className={styles.fondo}>
             <h1>Welcome to Henry Food</h1>
             <Link to='/home'>
-                <button>Start</button>
+                <button>START</button>
             </Link>
         </div>
     )

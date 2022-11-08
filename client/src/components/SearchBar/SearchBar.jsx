@@ -16,7 +16,6 @@ export default function SearchBar() {
         if (!name) return alert("Enter title")
         dispatch(getRecipeTitle(name))
         setName("")
-        //dispatch(setCurrentPage(1))
     }
     
     return (

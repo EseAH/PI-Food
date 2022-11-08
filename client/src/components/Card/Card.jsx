@@ -5,13 +5,19 @@ export default function Card({ image, title, diets, id }) {
   return (
     <div className={styles.Card}>
       <div className={styles.Image}>
-          <img src={image} alt="recipe" height="200px" />
+          <img src={image} alt="recipe" height="210vw" />
       </div>
       <div className={styles.Title}>
-          <h2>{title}</h2>
+          <h2 style={{textDecoration: 'none'}}>{title}</h2>
       </div>
-      <div>
-          <h4>{diets}</h4>
+      <div className={styles.diets}>
+          {diets?.map(e=> {
+            return (
+                <p style={{textDecoration: 'none'}}>✅ {e.toUpperCase()}</p>
+            )
+          }
+          )
+          }
       </div>
     </div>
   )

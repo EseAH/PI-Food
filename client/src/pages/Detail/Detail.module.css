@@ -14,3 +14,11 @@
     color: black;
     padding-top: 30vh;
 }
+
+.loading {
+    padding-top: 30vh;
+}
+
+.container p {
+    font-size: 1.1em;
+}

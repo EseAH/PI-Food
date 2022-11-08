@@ -1,6 +1,10 @@
 import {
+    CLEAN_DETAIL,
+    CREATE_RECIPE,
     GET_DETAIL,
-    GET_RECIPES, GET_RECIPE_TITLE
+    GET_DIETS,
+    GET_RECIPES,
+    GET_RECIPE_TITLE
 } from "./actions"
 
 const initialState = {
@@ -26,8 +30,21 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 detail: action.payload,
             };
-        
-        
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                detail: [],
+            }
+        case GET_DIETS:
+            return {
+                ...state,
+                diets: action.payload,
+            };
+        case CREATE_RECIPE:
+            return {
+                ...state,
+            };
+            
         default:
             return state;
     }
