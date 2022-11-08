@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getDiets, getRecipes, postRecipe } from "../../redux/actions"
+import { getDiets, postRecipe } from "../../redux/actions"
 import {validate} from "./Validate"
 import styles from './Create.module.css'
 
@@ -46,8 +46,8 @@ export default function CreateRecipe() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (input.title && input.summary && input.steps) {
-      dispatch(postRecipe())
+    if (input.title && input.summary) {
+      dispatch(postRecipe(input))
       alert("Recipe created!")
       setInput({
         title: "",
@@ -72,11 +72,11 @@ export default function CreateRecipe() {
   return (
     <>
       <div className={styles.container}>
-        <h1>Create</h1>
-        <form onSubmit={handleSubmit}>
+        <h1>Create recipe</h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <div className={styles.formulario}>
                 <label>TITLE: </label>
-                <input type='text' value={input.title} name='title' onChange={(e) => {handleChange(e)}}/>
+                <input type='string' value={input.title} name='title' onChange={(e) => {handleChange(e)}}/>
                 <p className={styles.p}>{errors.title}</p>
 
                 <label>IMAGE: </label>
@@ -84,29 +84,29 @@ export default function CreateRecipe() {
                 <p className={styles.p}>{errors.image}</p>
 
                 <label>SUMMARY: </label>
-                <input type='text' value={input.summary} name='summary' onChange={handleChange}/>
+                <input type='text' value={input.summary} name='summary' onChange={(e) => {handleChange(e)}}/>
                 <p className={styles.p}>{errors.summary}</p>
 
                 <label>HEALTH SCORE: </label>
-                <input type='number' value={input.healthScore} name='healthScore' onChange={handleChange}/>
+                <input type='number' value={input.healthScore} name='healthScore' onChange={(e) => {handleChange(e)}}/>
                 <p className={styles.p}>{errors.healthScore}</p>
 
                 <label>STEPS: </label>
-                <input type='text' value={input.steps} name='steps' onChange={handleChange}/>
+                <input type='text' value={input.steps} name='steps' onChange={(e) => {handleChange(e)}}/>
                 <p className={styles.p}>{errors.steps}</p>
 
                 <label>DIETS: </label>
-                <select onChange={handleDiets}>
+                <select key={diets.id} onChange={(e) => handleDiets(e)}>
                 <option hidden selected>select diets</option>
                     {diets?.map((c) => (
                         <option key={c.id} value={c.name}>{c.name}</option>
                     ))}
                 </select>
-                <div>
+                <div className={styles.diets}>
                     {input.diets.map((e) => {
                         return (
-                            <div>      
-                              <p>{e} <button className={styles.x} onClick={()=>handleDelete(e)}>x</button></p>
+                            <div className={styles.dietss}>      
+                              <p key={e.id}>{e} <button className={styles.x} onClick={()=>handleDelete(e)}>x</button></p>
                             </div>
                         )
                     })}

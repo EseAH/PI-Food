@@ -19,10 +19,10 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.INTEGER,
-      validate: {
-        min: 1,
-        max: 100,
-      }
+      // validate: {
+      //   min: 1,
+      //   max: 100,
+      // }
     },
     steps: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     createInDb: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      //allowNull: false,
       defaultValue: true,
     },
   }, {timestamps: false});

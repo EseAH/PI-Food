@@ -20,7 +20,7 @@ const URL = "https://api.spoonacular.com/recipes/complexSearch";
 
 const getAllRecipes = async () => {
   const apiList = await axios.get(
-    `${URL}?apiKey=${API_KEY_10}&addRecipeInformation=true&number=100`
+    `${URL}?apiKey=${API_KEY_1}&addRecipeInformation=true&number=100`
   );
   const apiRecipes = apiList.data?.results.map((e) => {
     return {
@@ -49,26 +49,6 @@ const getAllRecipes = async () => {
   return [...apiRecipes, ...dbRecipes];
 };
 
-// const getAllRecipes = async () => {
-//     try {
-//         const apiList = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY_1}&addRecipeInformation=true&number=10`)
-//         const apiRecipes = await apiList.data?.results.map((e) => {
-//             return {
-//                 id: e.id,
-//                 title: e.title,
-//                 diets: e.diets,
-//                 summary: e.summary.replace(/<[^>]*>?/g, ""),
-//                 healthScore: e.healthScore,
-//                 steps: e.analyzedInstructions[0]?.steps.map((e) => e.step),
-//                 image: e.image,
-//             }
-//         })
-//         console.log(apiRecipes);
-//         return apiRecipes
-//     } catch (error) {
-//         console.log('error en controller');
-//     }
-// }
 
 const getRecipeId = async (id) => {
   const recipes = await getAllRecipes();
@@ -106,7 +86,7 @@ const createRecipe = async (req, res, next) => {
       }
     }
   } catch (error) {
-    next(error);
+    next(error + "error rut");
   }
 };
 

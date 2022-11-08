@@ -5,17 +5,16 @@
     height: 80vh;
     background-size: cover;
     position: relative;
-    justify-content: center;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .formulario {
     background-color: rgba(32, 218, 203, 0.332);
     border-radius: 1rem;
     width: max-content;
-    position: absolute;
-    left: 40%;
-    right: 30%;
+    
     text-align: right;
 }
 
@@ -43,6 +42,12 @@ select {
     color: red;
 }
 
+.diets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
 .x {
     border: none;
     border-radius: 9999px;
@@ -50,13 +55,16 @@ select {
 }
 
 .butt {
-    padding-top: 50vh;
     border-radius: 20px;
 }
 .btn_off {
     display:none;
 }
 .btn_on {
+    background-color: darkred;
+    color: white;
     display:block;
-    margin-left: 48%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
 }

@@ -6,6 +6,8 @@ export const GET_DETAIL = "GET_DETAIL";
 export const GET_DIETS = "GET_DIETS";
 export const CREATE_RECIPE = "CREATE_RECIPE"
 export const CLEAN_DETAIL = "CLEAN_DETAIL"
+export const ORDER_AZ = "ORDER_AZ"
+export const BY_DIET = "BY_DIET"
 
 export function getRecipes(){
     return async function(dispatch){
@@ -73,7 +75,22 @@ export function getDiets() {
 export function postRecipe(payload){
     return async function (dispatch){
         const response = await axios.post("http://localhost:3001/recipes", payload)
+        console.log(response);
         return response
+    }
+}
+
+export function sortAz(payload) {
+    return {
+        type: ORDER_AZ,
+        payload
+    }
+}
+
+export function sortByDiet(payload) {
+    return {
+        type: BY_DIET,
+        payload
     }
 }
 
