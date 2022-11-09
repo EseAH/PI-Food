@@ -27,7 +27,6 @@ export default function Cards() {
   }
   //---------------------------------------------
 
-  
   function handleClick(e) {
     e.preventDefault()
     setCurrentPage(1)
@@ -45,7 +44,6 @@ export default function Cards() {
     setCurrentPage(1)
     setOrder(`${e.target.value}`)
   }
-
   function handleSortScore(e) {
     dispatch(sortByScore(e.target.value))
     setCurrentPage(1)
@@ -88,7 +86,6 @@ export default function Cards() {
           </select>
         </div>
       </div>
-
       <Paginado
         items={items}
         allRecipes={allRecipes.length}
