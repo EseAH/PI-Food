@@ -1,12 +1,18 @@
 .paginado {
     display: inline-flex;
     list-style-type: none;
-    color: rgb(255, 0, 0);
     margin-top: 5%;
+    color: rgba(0, 0, 0, 0);
 }
 
 .paginado button {
+    color: whitesmoke;
+    background-color: rgba(87, 41, 124, 0.64);
     padding: 0.4rem;
+    width: 1.5rem;
+    text-align: center;
+    border-radius: 9rem;
+    line-height: 0.7rem;
 }
 
 .paginado button:focus{

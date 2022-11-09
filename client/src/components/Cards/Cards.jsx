@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { Link } from "react-router-dom"
-import { getDiets, getRecipes, sortAz, sortByDiet } from "../../redux/actions"
+import { getDiets, getRecipes, sortAz, sortByDiet, sortByScore } from "../../redux/actions"
 import Card from "../Card/Card"
 import Paginado from "../Paginate/Paginate"
 import styles from "./Cards.module.css"
@@ -26,11 +26,7 @@ export default function Cards() {
   }
   //---------------------------------------------
 
-  useEffect(()=>{
-    dispatch(getRecipes())
-    dispatch(getDiets())
-  }, [dispatch])
-
+  
   function handleClick(e) {
     e.preventDefault()
     setCurrentPage(1)
@@ -44,13 +40,26 @@ export default function Cards() {
   }
   function handleSortDiet(e) {
     dispatch(sortByDiet(e.target.value))
-    //setCurrentPage(1)
+    setCurrentPage(1)
+    setOrder(`${e.target.value}`)
   }
+
+  function handleSortScore(e) {
+    dispatch(sortByScore(e.target.value))
+    setCurrentPage(1)
+    setOrder(`${e.target.value}`)
+  }
+
+  useEffect(()=>{
+    dispatch(getRecipes())
+    dispatch(getDiets())
+  }, [dispatch])
+
 
   return (
     <>
       <h1>RECIPES</h1>
-      <button onClick={(e)=>{handleClick(e)}}>RELOAD RECIPES</button>
+      <button className={styles.reload} onClick={(e)=>{handleClick(e)}}>RELOAD RECIPES</button>
       <div>
         <select onChange={(e)=>handleSort(e)}>
           <option hidden selected>select order</option>
@@ -59,14 +68,30 @@ export default function Cards() {
         </select>
       </div>
       <div>
-        <select onChange={(e)=>handleSortDiet(e)}>
+        <select onChange={(e)=>handleSortScore(e)}>
+          <option hidden selected>select score</option>
+          <option value="high">High</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+      <div>
+        <select defaultValue="all" id="diets" onChange={(e)=>handleSortDiet(e)}>
           <option hidden selected>select diet</option>
-          <option value="all">All</option>
-          <option value="vegan">vegan</option>
+          {/* <option value="all">All</option>
+          <option value="gluten free">GLUTEN FREE</option>
+          <option value="dairy free">DAIRY FREE</option>
+          <option value="lacto ovo vegetarian">LACTO-OVOVEGETARIAN</option>
+          <option value="vegan">VEGAN</option>
+          <option value="whole 30">WHOLE30</option>
+          <option value="paleolithic">PALEOLITHIC</option>
+          <option value="primal">PRIMAL</option>
+          <option value="pescatarian">PESCATARIAN</option>
+          <option value="ketogenic">KETOGENIC</option>
+          <option value="fodmap friendly">LOW FODMAP</option>
+          <option value="vegetarian">VEGETARIAN</option> */}
           {allDiets?.map((d)=> (
-            
             <option key={d.id} value={d.name}>{d.name}</option>
-          ))}
+            ))}
         </select>
       </div>
       <Paginado
@@ -79,14 +104,16 @@ export default function Cards() {
           currentCards.length ? (
             currentCards.map(recipe => {
               return (
-                <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-                    <Card
-                        title={recipe.title}
-                        image={recipe.image}
-                        diets={recipe.diets}
-                        id={recipe.id}
-                    />
-                </Link>)
+                <div>
+                  <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
+                      <Card
+                          title={recipe.title}
+                          image={recipe.image}
+                          diets={recipe.diets}
+                          key={recipe.id}
+                      />
+                  </Link>
+                </div>)
             })
           ) : (
             <div>

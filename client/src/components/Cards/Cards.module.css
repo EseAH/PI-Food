@@ -14,3 +14,10 @@
     margin-left: 6vw;
     margin-bottom: 3vh;
 }
+
+.reload {
+    color: white;
+    background-color:rgba(160, 68, 247, 0.551);
+    border-radius: 2rem;
+
+}

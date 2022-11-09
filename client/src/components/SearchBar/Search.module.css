@@ -1,0 +1,12 @@
+.search input{
+    width: 12rem;
+    height: 1.2rem;
+}
+
+.search button {
+    color: whitesmoke;
+    background-color: brown;
+    border-radius: 1.2rem;
+    line-height: 1.4rem;
+    margin-left: 0.2rem;
+}

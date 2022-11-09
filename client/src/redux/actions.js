@@ -8,6 +8,7 @@ export const CREATE_RECIPE = "CREATE_RECIPE"
 export const CLEAN_DETAIL = "CLEAN_DETAIL"
 export const ORDER_AZ = "ORDER_AZ"
 export const BY_DIET = "BY_DIET"
+export const BY_SCORE = "BY_SCORE"
 
 export function getRecipes(){
     return async function(dispatch){
@@ -61,7 +62,7 @@ export function getDiets() {
     return async function(dispatch){
         try {
             let json = await axios("http://localhost:3001/diets")
-            //console.log(json)
+            //console.log(json.data)
             return dispatch({
                 type: GET_DIETS,
                 payload: json.data
@@ -75,7 +76,7 @@ export function getDiets() {
 export function postRecipe(payload){
     return async function (dispatch){
         const response = await axios.post("http://localhost:3001/recipes", payload)
-        console.log(response);
+        console.log(response.data);
         return response
     }
 }
@@ -87,10 +88,17 @@ export function sortAz(payload) {
     }
 }
 
+export function sortByScore(payload) {
+    return {
+        type: BY_SCORE,
+        payload
+    }
+}
+
 export function sortByDiet(payload) {
+    //console.log(payload);
     return {
         type: BY_DIET,
         payload
     }
 }
-

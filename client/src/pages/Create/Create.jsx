@@ -8,11 +8,6 @@ export default function CreateRecipe() {
   const dispatch = useDispatch()
   const diets = useSelector(state=>state.diets)
 
-  useEffect(() => {
-    dispatch(getDiets()) // cuando el componente se monta se dispara la callback
-}, [dispatch])
-
-
   const [errors, setErrors] = useState({})
 
   const [input, setInput] = useState({
@@ -40,13 +35,19 @@ export default function CreateRecipe() {
   function handleDiets(e) {
     setInput({
       ...input,
-      diets: [...new Set([...input.diets, e.target.value])]
+      diets: [...input.diets, e.target.value]
+    })
+  }
+  function handleSteps(e) {
+    setInput({
+      ...input,
+      steps: [...input.steps, e.target.value]
     })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (input.title && input.summary) {
+    // if (input.title && input.summary) {
       dispatch(postRecipe(input))
       alert("Recipe created!")
       setInput({
@@ -57,9 +58,9 @@ export default function CreateRecipe() {
         healthScore: "",
         steps: []
       })
-    } else {
-      alert("Error. Check the form and complete")
-    }
+    // } else {
+    //   alert("Error. Check the form and complete")
+    // }
   }
 
   function handleDelete(e) {
@@ -69,6 +70,10 @@ export default function CreateRecipe() {
     })
 }
 
+useEffect(() => {
+  dispatch(getDiets()) // cuando el componente se monta se dispara la callback
+}, [dispatch])
+
   return (
     <>
       <div className={styles.container}>
@@ -76,31 +81,42 @@ export default function CreateRecipe() {
         <form onSubmit={(e) => handleSubmit(e)}>
             <div className={styles.formulario}>
                 <label>TITLE: </label>
-                <input type='string' value={input.title} name='title' onChange={(e) => {handleChange(e)}}/>
+                <input type='string' value={input.title} name='title' onChange={(e) => handleChange(e)}/>
                 <p className={styles.p}>{errors.title}</p>
 
                 <label>IMAGE: </label>
-                <input type='text' value={input.image} name='image' onChange={(e) => {handleChange(e)}}/>
+                <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)}/>
                 <p className={styles.p}>{errors.image}</p>
 
                 <label>SUMMARY: </label>
-                <input type='text' value={input.summary} name='summary' onChange={(e) => {handleChange(e)}}/>
+                <input type='text' value={input.summary} name='summary' onChange={(e) => handleChange(e)}/>
                 <p className={styles.p}>{errors.summary}</p>
 
                 <label>HEALTH SCORE: </label>
-                <input type='number' value={input.healthScore} name='healthScore' onChange={(e) => {handleChange(e)}}/>
+                <input type='number' value={input.healthScore} name='healthScore' onChange={(e) => handleChange(e)}/>
                 <p className={styles.p}>{errors.healthScore}</p>
 
                 <label>STEPS: </label>
-                <input type='text' value={input.steps} name='steps' onChange={(e) => {handleChange(e)}}/>
+                <input type='text' value={input.steps} name='steps' onChange={(e) => handleSteps(e)}/>
                 <p className={styles.p}>{errors.steps}</p>
 
                 <label>DIETS: </label>
-                <select key={diets.id} onChange={(e) => handleDiets(e)}>
-                <option hidden selected>select diets</option>
-                    {diets?.map((c) => (
-                        <option key={c.id} value={c.name}>{c.name}</option>
+                <select id='diets' defaultValue={'select diets'} onChange={(e) => handleDiets(e)}>
+                  <option key='default' value='select diets' hidden>select diets</option>
+                  {diets?.map((d) => (
+                        <option key={d.id} value={d.name}>{d.name}</option>
                     ))}
+                  {/* <option key="1" value='gluten free'>Gluten free</option> 
+                  <option key="2" value='dairy free'>dairy free</option>
+                  <option key="3" value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
+                  <option key="4" value='vegan'>vegan</option>
+                  <option key="5" value='whole 30'>whole 30</option>
+                  <option key="6" value='paleolithic'>paleolithic</option>
+                  <option key="7" value='primal'>primal</option>
+                  <option key="8" value='pescatarian'>pescatarian</option>
+                  <option key="9" value='ketogenic'>ketogenic</option>
+                  <option key="10" value='fodmap friendly'>fodmap friendly</option>
+                  <option key="11" value='vegetarian'>vegetarian</option> */}
                 </select>
                 <div className={styles.diets}>
                     {input.diets.map((e) => {

@@ -45,8 +45,20 @@ const getAllRecipes = async () => {
       },
     },
   });
+  const dbRecipesMapeadas = dbRecipes.map((e) => {
+    return {
+      id: e.id,
+      title: e.title,
+      diets: e.diets.map((e) => e.name),
+      summary: e.summary,
+      healthScore: e.healthScore,
+      steps: e.steps,
+      image: e.image,
+      dishTypes: e.dishTypes
+    }
+  })
 
-  return [...apiRecipes, ...dbRecipes];
+  return [...apiRecipes, ...dbRecipesMapeadas];
 };
 
 
@@ -60,17 +72,15 @@ const getRecipeId = async (id) => {
   }
 };
 
-const createRecipe = async (req, res, next) => {
+const createRecipe = async (req, res) => {
   const { title, summary, healthScore, steps, image, diets } = req.body;
-
-  if (!title || !summary) return res.status(404).send("Missing fields");
   try {
-    if (title) {
-      const allRecipes = await getAllRecipes();
-      const titleMatch = allRecipes.filter((e) => e.title.toLowerCase() === title.toLowerCase());
-      if (!titleMatch.length) {
+    // if (title) {
+    //   const allRecipes = await getAllRecipes();
+    //   const titleMatch = allRecipes.filter((e) => e.title.toLowerCase() === title.toLowerCase());
+      // if (!titleMatch.length) {
         const newRecipe = await Recipe.create({
-          title: title.charAt(0).toUpperCase() + title.slice(1).toLowerCase(),
+          title,
           summary,
           healthScore,
           steps,
@@ -80,13 +90,14 @@ const createRecipe = async (req, res, next) => {
           where: { name: diets },
         });
         newRecipe.addDiet(dietsRecipe);
+        console.log(newRecipe)
         return res.status(201).send(newRecipe);
-      } else {
-        return res.status(404).send("Recipe's title already exist!");
-      }
-    }
+      //} else {
+      //   return res.status(404).send("Recipe's title already exist!");
+      // }
+    //}
   } catch (error) {
-    next(error + "error rut");
+    console.log(error + "error ruta");
   }
 };
 
