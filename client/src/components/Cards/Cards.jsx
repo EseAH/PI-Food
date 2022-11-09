@@ -79,8 +79,9 @@ export default function Cards() {
           </select>
         </div>
         <div>
-          <select defaultValue="all" id="diets" onChange={(e)=>handleSortDiet(e)}>
+          <select defaultValue="select diet" id="diets" onChange={(e)=>handleSortDiet(e)}>
             <option hidden selected>select diet</option>
+            <option value="all">all</option>
             {allDiets?.map((d)=> (
               <option key={d.id} value={d.name}>{d.name}</option>
               ))}

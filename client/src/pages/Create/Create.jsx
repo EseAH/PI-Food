@@ -106,17 +106,6 @@ useEffect(() => {
                   {diets?.map((d) => (
                         <option key={d.id} value={d.name}>{d.name}</option>
                     ))}
-                  {/* <option key="1" value='gluten free'>Gluten free</option> 
-                  <option key="2" value='dairy free'>dairy free</option>
-                  <option key="3" value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
-                  <option key="4" value='vegan'>vegan</option>
-                  <option key="5" value='whole 30'>whole 30</option>
-                  <option key="6" value='paleolithic'>paleolithic</option>
-                  <option key="7" value='primal'>primal</option>
-                  <option key="8" value='pescatarian'>pescatarian</option>
-                  <option key="9" value='ketogenic'>ketogenic</option>
-                  <option key="10" value='fodmap friendly'>fodmap friendly</option>
-                  <option key="11" value='vegetarian'>vegetarian</option> */}
                 </select>
                 <div className={styles.diets}>
                     {input.diets.map((e) => {

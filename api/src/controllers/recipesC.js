@@ -20,7 +20,7 @@ const URL = "https://api.spoonacular.com/recipes/complexSearch";
 
 const getAllRecipes = async () => {
   const apiList = await axios.get(
-    `${URL}?apiKey=${API_KEY_4}&addRecipeInformation=true&number=100`
+    `${URL}?apiKey=${API_KEY_7}&addRecipeInformation=true&number=100`
   );
   const apiRecipes = apiList.data?.results.map((e) => {
     return {
