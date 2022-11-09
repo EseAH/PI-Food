@@ -10,7 +10,7 @@ const Nav = ()=>{
             <hr></hr>
             <Link to="/home"><h3>HOME</h3></Link>
             <hr></hr>
-            <Link to="/create"><h3>CREATE</h3></Link>
+            <Link to="/home/create"><h3>CREATE</h3></Link>
             <hr></hr>
         </div>
         </>

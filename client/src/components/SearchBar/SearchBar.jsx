@@ -13,11 +13,10 @@ export default function SearchBar({setCurrentPage}) {
     }
 
     const handleSubmit = (e) => {
-        
         if (!name) return alert("Enter title")
         dispatch(getRecipeTitle(name))
         setName("")
-        //setCurrentPage(1)
+        setCurrentPage(1)
     }
     
     return (

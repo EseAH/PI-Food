@@ -11,11 +11,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         {/* <Switch>  //con SWITCH renderiza una pagina u otra, no nav + home */}
-          <Route path="/" component={Nav}/>
           <Route exact path="/" component={LandingPage}/>
+          <Route path="/home/" component={Nav}/>
           <Route exact path="/home" component={Home}/>
-          <Route exact path="/recipes/:id" component={Detail}/>
-          <Route exact path="/create" component={CreateRecipe}/>
+          <Route exact path="/home/recipes/:id" component={Detail}/>
+          <Route exact path="/home/create" component={CreateRecipe}/>
         {/* </Switch> */}
       </div>
     </BrowserRouter>
